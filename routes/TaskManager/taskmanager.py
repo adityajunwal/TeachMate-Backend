@@ -27,7 +27,7 @@ def create_task(task: Task):
 def read_tasks():
     return tasks
 
-@taskRouter.get("/", response_model=Task)
+@taskRouter.get("/{taski_id}", response_model=Task)
 def read_task(task_id: UUID):
     for task in tasks:
         if task.id == task_id:
@@ -35,7 +35,7 @@ def read_task(task_id: UUID):
     
     raise HTTPException(status_code=404, detail="TASK NOT FOUND!!!")
 
-@taskRouter.put("/", response_model=Task)
+@taskRouter.put("/{task_id}", response_model=Task)
 def update_task(task_id: UUID, task_update: Task):
     for idx, task in enumerate(tasks):
         if task.id == task_id:
@@ -47,7 +47,7 @@ def update_task(task_id: UUID, task_update: Task):
 
     raise HTTPException(status_code=404, detail="TASK NOT FOUND!!!")
 
-@taskRouter.delete("/", response_model=Task)
+@taskRouter.delete("/{task_id}", response_model=Task)
 def delete_task(task_id: UUID):
     for idx, task in enumerate(tasks):
         if task.id == task_id:
