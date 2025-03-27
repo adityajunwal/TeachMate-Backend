@@ -8,7 +8,7 @@ taskRouter = APIRouter(
     tags=["Task Manager"]
 )
 
-tasks = []
+tasks = ( lambda : [] )()
 
 class Task(BaseModel):
     id: Optional[UUID] = None
